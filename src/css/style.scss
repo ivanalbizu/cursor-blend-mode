@@ -1,0 +1,48 @@
+:root {
+  --w-frame: 80;
+  --h-frame: 80;
+  --radius: 50;
+  --blur-start: 4;
+  --blur-end: 4;
+  --scale-end: 0.5;
+  --img-color: rgba(255, 255, 255, 0.5);
+  --frame-color: rgba(255, 255, 255, 0.3);
+  --img-blend-mode: multiply;
+  --frame-blend-mode: overlay;
+}
+body {
+  background: var(--img-color) url('../img/tree.jpg') no-repeat center;
+  background-size: cover;
+  overflow: hidden;
+  height: 60vh;
+  background-blend-mode: var(--img-blend-mode);
+  display: grid;
+  place-content: center;
+}
+.circle {
+  width: calc(var(--w-frame) * 1px);
+  height: calc(var(--h-frame) * 1px);
+  position: absolute;
+  display: inline-block;
+  border-radius: calc(var(--radius) * 1%);
+  background-color: var(--frame-color);
+  left: var(--x);
+  top: var(--y);
+  pointer-events: none;
+  mix-blend-mode: var(--frame-blend-mode);
+  transform: scale(1);
+  filter: blur(calc(var(--blur-start) * 1px));
+  animation: fadeout 1s linear forwards;
+}
+
+.dg.ac {
+  z-index: 9 !important;
+}
+
+@keyframes fadeout {
+  to {
+    background-color: rgba(255, 255, 255, 0);
+    transform: scale(var(--scale-end));
+    filter: blur(calc(var(--blur-end) * 1px));
+  }
+}
